@@ -172,6 +172,7 @@ ExecuteResult execute_insert(Statement* statement, Table* table) {
 // select
 ExecuteResult execute_select(Statement* statement, Table* table) {
     Row row;
+    printf("%d\n", table->num_rows);
     for (uint32_t i = 0; i < table->num_rows; i++) {
         deserialize_row(row_slot(table, i), &row);
         print_row(&row);
@@ -183,9 +184,9 @@ ExecuteResult execute_select(Statement* statement, Table* table) {
 ExecuteResult execute_statement(Statement* statement, Table* table) {
     switch (statement->type) {
         case (STATEMENT_SELECT):
-            execute_select(statement, table);
+            return execute_select(statement, table);
         case (STATEMENT_INSERT):
-            execute_insert(statement, table);
+            return execute_insert(statement, table);
     }
 }
 
