@@ -1,2 +1,4 @@
 # ignore compiled binary
 bin/
+
+*.db
